@@ -20,7 +20,7 @@ public interface MyFuntionalInterfaceWithParameters {
 	}
 
 	public static void staticMethodCall() {
-		System.out.println("This call from default method");
+		System.out.println("This call from Static method");
 	}
 
 }

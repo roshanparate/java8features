@@ -76,6 +76,10 @@ public class LambdaExample{
 		Collections.sort(el, (e1, e2) -> (e1.getEmployeeNo() > e2.getEmployeeNo()) ? -1
 				: (e1.getEmployeeNo() < e2.getEmployeeNo()) ? 1 : 0);
 		System.out.println("After sorting " + el);
+		
+		MyFuntionalInterfacePrintHello.staticMethodCall();
+		MyFuntionalInterfaceWithParameters.staticMethodCall();
+		MyFuntionalInterfaceWithReturn.staticMethodCall();
 	}
 
 }
