@@ -1,5 +1,7 @@
 package com.java.vo;
 
+import java.util.Objects;
+
 public class Employee {
 	public int employeeNo;
 	public String employeeName;
@@ -48,7 +50,27 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return String.format("(%o,%s,%s,%.2f,%s)",employeeNo,employeeName,designation,salary,city);
+		return String.format("(%d,%s,%s,%.2f,%s)",employeeNo,employeeName,designation,salary,city);
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(city, designation, employeeName, employeeNo, salary);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		return Objects.equals(city, other.city) && Objects.equals(designation, other.designation)
+				&& Objects.equals(employeeName, other.employeeName) && employeeNo == other.employeeNo
+				&& Double.doubleToLongBits(salary) == Double.doubleToLongBits(other.salary);
+	}
+	
 	
 }

@@ -26,14 +26,7 @@ public class PredicateCode {
 		a.add(10);
 		System.out.println(c.test(a));
 		ArrayList b = new ArrayList();
-		System.out.println(c.test(b));
-		
-		
-		// default methods which use for two predicate as single predicate 
-		//negate
-		//and
-		//or
-		
+		System.out.println(c.test(b));	
 		
 		String[] name = {"Durga","", null,"Ankit","","Ganesh",null};
 		Predicate<String> myP = s-> null != s && s.length() !=0;
@@ -43,22 +36,23 @@ public class PredicateCode {
 		System.out.println();
 		
 		
-//		Predicate<User> pU =  user-> user.username.equals("Kunal") && user.pwd.equals("ABC123"); 
-//		Scanner sc = new Scanner(System.in);
-//		System.out.println("Enter User Name: ");
-//		String userN = sc.next();
-//		System.out.println("Enter Pwd: ");
-//		String pwd = sc.next();
-//		User u = new User(userN,pwd);
-//		System.out.println(pU.test(u)?true:false);
+		Predicate<User> pU =  user-> user.username.equals("Kunal") && user.pwd.equals("ABC123"); 
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter User Name: ");
+		String userN = sc.next();
+		System.out.println("Enter Pwd: ");
+		String pwd = sc.next();
+		User u = new User(userN,pwd);
+		System.out.println(pU.test(u)?true:false);
 		
 		ArrayList<Employee> emp = new ArrayList<Employee>();
 		emp.add(new Employee(100, "Jaya","CEO", 30000.50, "Pune"));
 		emp.add(new Employee(200, "John","CFO", 20000.50,"Mumbai"));
 		emp.add(new Employee(300, "Ankit","CTO", 10000.50,"Delhi"));
 		emp.add(new Employee(400, "Virat","Manager", 5000.50,"Pune"));
-		emp.add(new Employee(500, "Rohit","Clark", 3000.50,"Pune"));
+		emp.add(new Employee(500, "Rohit","Clerk", 3000.50,"Pune"));
 		emp.add(new Employee(600, "Jay","Manager", 5000.50,"Nagpur"));
+		emp.add(new Employee(700, "Om","Manager", 5000.50,"Pune"));
 		//System.out.println(emp);
 		
 		Predicate<Employee> desi = em -> em.designation.equals("Manager");
@@ -70,6 +64,26 @@ public class PredicateCode {
 		Predicate<Employee> sal = em2 -> em2.salary <10000.50;
 		display(sal, emp);
 		
+		// default methods which use for two predicate as single predicate 
+		//negate
+		//and
+		//or
+		
+		display(desi.and(city), emp);
+		
+		display(desi.or(sal), emp);
+		
+		display(desi.negate(), emp);
+		System.out.println();
+		
+		// isEqual static method present in Predicate interface
+		
+		Predicate<String> pred1 = Predicate.isEqual("Java");
+		System.out.println(pred1.test("Java"));
+		System.out.println();
+		
+		Predicate<Employee> isCEO = Predicate.isEqual(new Employee(100, "Jaya","CEO", 30000.50, "Pune"));
+		System.out.println(isCEO.test(new Employee(700, "Om","Manager", 5000.50,"Pune")));
 	}
 
 	public static void display(Predicate<Employee> p , ArrayList<Employee> list) {
